@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trello Form Submission</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f9;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #0079bf;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005a8c;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Submit a Task to Trello</h1>
+  <form id="trelloForm">
+    <label for="taskTitle">Task Title</label>
+    <input type="text" id="taskTitle" name="taskTitle" placeholder="Enter the task title" required>
+    
+    <label for="taskDescription">Task Description</label>
+    <textarea id="taskDescription" name="taskDescription" placeholder="Enter the task description" required></textarea>
+
+    <button type="submit">Submit to Trello</button>
+  </form>
+
+  <script>
+    document.getElementById('trelloForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get values from the form
+      const taskTitle = document.getElementById('taskTitle').value;
+      const taskDescription = document.getElementById('taskDescription').value;
+
+      // Trello API credentials (replace with your actual API key, token, and list ID)
+      const apiKey = 'YOUR_API_KEY'; // Replace with your Trello API key
+      const apiToken = 'YOUR_API_TOKEN'; // Replace with your Trello token
+      const listId = 'YOUR_LIST_ID'; // Replace with the ID of the Trello list
+
+      const url = `https://api.trello.com/1/cards?key=${apiKey}&token=${apiToken}`;
+
+      const data = {
+        name: taskTitle,
+        desc: taskDescription,
+        idList: listId,
+      };
+
+      // Make the API request to Trello to create the card
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Card created:', data);
+        alert('Task successfully added to Trello!');
+        document.getElementById('trelloForm').reset(); // Reset the form after submission
+      })
+      .catch(error => {
+        console.error('Error creating card:', error);
+        alert('An error occurred. Please try again.');
+      });
+    });
+  </script>
+
+</body>
+</html>
