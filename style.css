@@ -1,0 +1,62 @@
+       body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f4f4f9;
+      }
+  
+      form {
+        max-width: 400px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-family: Comfortaa, sans-serif;
+      }
+  
+      input, textarea, button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-family: Comfortaa, sans-serif;
+      }
+  
+      button {
+        background-color: #354EAD;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-family: Comfortaa, sans-serif;
+        transition: ease 0.5s;
+      }
+  
+      button:hover {
+        background-color: #00a6ff;
+      }
+      .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #354EAD;
+        color: #FFF9EF;
+        padding: 10px 20px;
+        border-radius: 10px;
+    }
+    .navbar img {
+        height: 40px; /* Adjust height as needed */
+    }
+    .navbar h1 {
+        margin: 0;
+        font-size: 26px; /* Adjust size as needed */
+        font-family: Comfortaa, sans-serif;
+    }
+    @font-face {
+        font-family: 'Comfortaa'; /* Name you want to use */
+        src: url('Comfortaa.ttf') format('truetype');
+        font-weight: normal; /* Adjust if necessary */
+        font-style: normal; /* Adjust if necessary */
+    }
+    

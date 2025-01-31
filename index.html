@@ -3,110 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <title>Trello Form Submission</title>
-  <style>
-    .happy-monkey-regular {
-  font-family: "Happy Monkey", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-    
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f4f4f9;
-    }
-
-    form {
-      max-width: 400px;
-      margin: 0 auto;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      font-family: Happy Monkey, sans-serif;
-    }
-
-    input, textarea, button {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-      font-family: Happy Monkey, sans-serif;
-    }
-
-    button {
-      background-color: #0079bf;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-family: Happy Monkey, sans-serif;
-    }
-
-    button:hover {
-      background-color: #005a8c;
-    }
-  </style>
 </head>
 <body>
-
-  <h1>Submit a Task to Trello</h1>
+  <div class="navbar">
+    <img src="logo.png" alt="Logo"> <!-- Replace with your logo image -->
+    <h1>Submit a 3D Printing request</h1>
+</div>
   <form id="trelloForm">
-    <label for="Name">Name</label>
-    <input type="text" id="Name" name="Name" placeholder="Please enter your name" required>
-    
-    <label for="taskDescription">Task Description</label>
-    <textarea id="taskDescription" name="taskDescription" placeholder="Enter the task description" required></textarea>
+    <label for="taskName">Please enter the project name</label>
+    <input type="text" id="taskName" name="taskName" placeholder="Please enter the name of your project" required>
 
-    <button type="submit">Submit to Trello</button>
+    <label for="taskDescription">Please enter any additional information you want us to know, like the project url, and the place you will put your completed project.</label>
+    <textarea id="taskDescription" placeholder="Please enter any additional information"></textarea>
+    <button type="submit">Submit</button>
   </form>
 
-  <script>
-    document.getElementById('trelloForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Get values from the form
-      const taskTitle = document.getElementById('taskTitle').value;
-      const taskDescription = document.getElementById('taskDescription').value;
-
-      // Trello API credentials (replace with your actual API key, token, and list ID)
-      const apiKey = '41ff78b948f71ee9005f566ffceab233'; // Replace with your Trello API key
-      const apiToken = 'ATTAef6b6b605f61d4a94bfaf2879cd3fb482abd3ca357e24587f73454490b7dbfcbFC72E42B'; // Replace with your Trello token
-      const listId = '67997574dbeb9aa9838e51cf'; // Replace with the ID of the Trello list
-
-      const url = `https://api.trello.com/1/cards?key=${apiKey}&token=${apiToken}`;
-
-      const data = {
-        name: taskTitle,
-        desc: taskDescription,
-        idList: listId,
-      };
-
-      // Make the API request to Trello to create the card
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Card created:', data);
-        alert('Task successfully added to Trello!');
-        document.getElementById('trelloForm').reset(); // Reset the form after submission
-      })
-      .catch(error => {
-        console.error('Error creating card:', error);
-        alert('An error occurred. Please try again.');
-      });
-    });
-  </script>
-
+  <script src="script.js"></script> 
 </body>
 </html>
